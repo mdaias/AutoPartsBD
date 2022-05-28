@@ -7,10 +7,10 @@ import auth from '../../../firebase.init';
 const PurchasePage = () => {
     const { id } = useParams()
     const [part, setPart] = useState({});
-    const [user, loading, error] = useAuthState(auth);
+    const [user] = useAuthState(auth);
 
 
-    const { name, description, price, quantity, picture, } = part;
+    const { name, description, price, quantity, picture, _id } = part;
 
     useEffect(() => {
         fetch(`http://localhost:5000/parts/${id}`)
@@ -56,7 +56,24 @@ const PurchasePage = () => {
         }
 
         // update stock in mongodb
-        
+        const updateStock = parseInt(quantity) - parseInt(event.target.quantity.value);
+        console.log(updateStock)
+
+        // send data to the server
+        const url2 = `http://localhost:5000/parts/${_id}`;
+        fetch(url2, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({ quantity: updateStock })
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('success', data);
+                toast.success('Delivered successfully!!!');
+                
+            });
 
     }
 
