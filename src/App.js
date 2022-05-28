@@ -14,8 +14,6 @@ function App() {
           <Route path='/register' element={<Register></Register>}></Route>
           <Route path='/' element={<Home></Home>}></Route>
         </Routes>
-
-        <h1 className='text-3xl font-bold underline text-violet-500'>welcome to AutoPartsBd</h1> 
     </div>
   );
 }
