@@ -15,20 +15,20 @@ const MakeAdmin = () => {
     }
     return (
         <div>
-            <h2 className="text-3xl my-5 text-orange-500">All Users: {users.length}</h2>
+            <h2 className="text-2xl text-orange-400 my-5">All Users: {users.length}</h2>
             <div class="overflow-x-auto">
                 <table class="table w-full">
                     <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+                            <th>User</th>
                             <th>Make Admin</th>
-                            <th>Remove Admin</th>
+                            <th>Delete User</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            users.map((user,index) => <AdminRole
+                            users.map((user,index) => <AdminRole 
                                 index={index}
                                 key={user._id}
                                 user={user}
