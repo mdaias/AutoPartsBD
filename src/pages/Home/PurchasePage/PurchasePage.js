@@ -8,6 +8,8 @@ const PurchasePage = () => {
     const { id } = useParams()
     const [part, setPart] = useState({});
     const [user] = useAuthState(auth);
+    const [order,setOrder] = useState(false)
+
 
 
     const { name, description, price, quantity, picture, _id } = part;
@@ -18,18 +20,22 @@ const PurchasePage = () => {
             .then(data => {
                 setPart(data)
             })
-    }, [id]);
+    }, [id,order]);
 
     const handlePurchase = event => {
         event.preventDefault();
+        const totalPrice = parseInt(price) * parseInt(quantity);
+        const newPrice = JSON.stringify(totalPrice)
+
         const orderData = {
-            email: user.email,
-            name: user.name,
+            email: user?.email,
+            name: user?.displayName,
             productName: name,
             number: event.target.number.value,
             quantity: event.target.quantity.value,
-            price: parseInt(price) * parseInt(quantity),
+            price: newPrice,
         }
+        console.log(orderData)
 
         // post order in mongodb
         const url = `http://localhost:5000/order`;
@@ -46,6 +52,7 @@ const PurchasePage = () => {
                     console.log(result)
                     if (result.insertedId) {
                         toast.success('Order Item is successfully added')
+                        setOrder(!order)
                         event.target.reset();
                     }
                 })
@@ -57,7 +64,7 @@ const PurchasePage = () => {
 
         // update stock in mongodb
         const updateStock = parseInt(quantity) - parseInt(event.target.quantity.value);
-        console.log(updateStock)
+        
 
         // send data to the server
         const url2 = `http://localhost:5000/parts/${_id}`;

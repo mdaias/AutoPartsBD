@@ -10,6 +10,7 @@ const Navbar = () => {
 
     const logout = () => {
         signOut(auth);
+        localStorage.removeItem('accessToken')
     };
 
     const menuItems = <>
@@ -19,7 +20,10 @@ const Navbar = () => {
         <li><Link to='/'> My Profile </Link></li>
         <li><Link to='/'> Blogs </Link></li>
         {
-            user && <li><Link to='/'>Deshboard</Link></li>
+            user && <li><Link to='/deshboard'>Deshboard</Link></li>
+        }
+        {
+            user ? <Link onClick={logout} to='' className='btn btn-ghost bg-accent md:ml-10 md:mt-2 text-white'>LogOut </Link> : <Link to='/login' className='btn btn-ghost bg-accent md:mt-2 text-white'>LogIn</Link>
         }
 
     </>
@@ -41,11 +45,10 @@ const Navbar = () => {
                     {menuItems}
                 </ul>
             </div>
-            <div className="navbar-end mr-5 md:mr-16 text-lg md:text-xl font-bold">
-                
-                {
-                    user ? <Link onClick={logout} to=''>LogOut </Link> : <Link to='/login'>LogIn</Link>
-                }
+            <div className="navbar-end md:text-xl font-bold">
+            <label tabIndex="1" htmlFor="deshboard-sidebar" className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    </label>
             </div>
         </div>
     );
