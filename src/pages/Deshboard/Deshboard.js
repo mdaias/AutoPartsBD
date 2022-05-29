@@ -1,12 +1,18 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, Outlet } from 'react-router-dom';
+import auth from '../../firebase.init';
+import useAdmin from '../../hooks/UseAdmin';
 
 const Deshboard = () => {
+    const [user] = useAuthState(auth)
+    const [admin] = useAdmin(user)
+    
     return (
         <div className="drawer drawer-mobile">
             <input id="deshboard-sidebar" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
-                <h1 className='text-5xl'>deshboard</h1>
+                <h1 className='text-5xl text-sky-400'>Deshboard</h1>
                 <Outlet/>
 
             </div>
@@ -16,6 +22,9 @@ const Deshboard = () => {
                     {/* Sidebar content here */}
                     <li><Link to='/deshboard/myorders'>My Orders</Link></li>
                     <li><Link to='/deshboard/addreview'>Add a Review</Link></li>
+                    {
+                        admin && <li><Link to='/deshboard/makeadmin'>Make Admin</Link></li>
+                    }
                 </ul>
 
             </div>

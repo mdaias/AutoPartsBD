@@ -9,6 +9,7 @@ const MyOrders = () => {
     const [user] = useAuthState(auth);
     const navigate = useNavigate()
 
+
     useEffect(() => {
         if (user) {
             fetch(`http://localhost:5000/order?user=${user.email}`, {
@@ -18,7 +19,7 @@ const MyOrders = () => {
                 }
             })
                 .then(res => {
-                    console.log('res', res);
+                    // console.log('res', res);
                     if (res.status === 401 || res.status === 403) {
                         signOut(auth);
                         localStorage.removeItem('accessToken');
@@ -33,11 +34,27 @@ const MyOrders = () => {
         }
     }, [user,navigate])
 
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure! delete this items?');
+        if (proceed) {
+            const url = `http://localhost:5000/order/${id}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    const remaining = orders.filter(product => product._id !== id);
+                    setOrders(remaining);
+                })
+        }
+    }
+
     return (
         <div>
-            <h2>My Orders: {orders.length}</h2>
-            <div class="overflow-x-auto">
-                <table class="table w-full">
+            <h2 className='my-5 text-purple-700 text-3xl'>My Orders: {orders.length}</h2>
+            <div className="overflow-x-auto">
+                <table className="table w-full">
                     <thead>
                         <tr>
                             <th></th>
@@ -45,6 +62,7 @@ const MyOrders = () => {
                             <th>Product Name</th>
                             <th>Quantity</th>
                             <th>Total Price</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,7 +72,8 @@ const MyOrders = () => {
                                 <td>{order.name}</td>
                                 <td>{order.productName}</td>
                                 <td>{order.quantity}</td>
-                                <td>{order.price}</td>
+                                <td>${order.price}</td>
+                                <td><button onClick={()=>handleDelete(order._id)} className='btn btn-warning font-bold hover:bg-orange-400'>Cancel</button></td>
                             </tr>)
                         }
 
