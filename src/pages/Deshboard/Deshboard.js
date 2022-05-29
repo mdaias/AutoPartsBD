@@ -12,8 +12,8 @@ const Deshboard = () => {
             </div>
             <div className="drawer-side">
                 <label htmlFor="deshboard-sidebar" className="drawer-overlay"></label>
-                <ul className="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-                    {/* <!-- Sidebar content here --> */}
+                <ul className="menu p-4 overflow-y-auto w-36 bg-base-100 text-base-content">
+                    {/* Sidebar content here */}
                     <li><Link to='/deshboard/myorders'>My Orders</Link></li>
                     <li><Link to='/deshboard/addreview'>Add a Review</Link></li>
                 </ul>
