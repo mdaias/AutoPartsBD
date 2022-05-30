@@ -15,7 +15,7 @@ const AddProduct = () => {
             quantity: data.stock,
             description: data.description
         }
-        const url = `http://localhost:5000/parts`;
+        const url = `https://frozen-castle-64433.herokuapp.com/parts`;
         if (data.stock > 0 && data.price > 0) {
             fetch(url, {
                 method: 'POST',

@@ -15,7 +15,7 @@ const PurchasePage = () => {
     const { name, description, price, quantity, picture, _id } = part;
 
     useEffect(() => {
-        fetch(`http://localhost:5000/parts/${id}`)
+        fetch(`https://frozen-castle-64433.herokuapp.com/parts/${id}`)
             .then(res => res.json())
             .then(data => {
                 setPart(data)
@@ -38,7 +38,7 @@ const PurchasePage = () => {
         console.log(orderData)
 
         // post order in mongodb
-        const url = `http://localhost:5000/order`;
+        const url = `https://frozen-castle-64433.herokuapp.com/order`;
         if (event.target.quantity.value > 10 && event.target.quantity.value < quantity) {
             fetch(url, {
                 method: 'POST',
@@ -67,7 +67,7 @@ const PurchasePage = () => {
         
 
         // send data to the server
-        const url2 = `http://localhost:5000/parts/${_id}`;
+        const url2 = `https://frozen-castle-64433.herokuapp.com/parts/${_id}`;
         fetch(url2, {
             method: 'PUT',
             headers: {

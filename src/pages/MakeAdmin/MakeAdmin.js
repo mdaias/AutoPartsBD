@@ -4,7 +4,7 @@ import AdminRole from '../AdminRole/AdminRole';
 import Loading from '../Shared/Loading/Loading';
 
 const MakeAdmin = () => {
-    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('http://localhost:5000/user', {
+    const { data: users, isLoading, refetch } = useQuery('users', () => fetch('https://frozen-castle-64433.herokuapp.com/user', {
         method: 'GET',
         headers: {
             authorization: `Bearer ${localStorage.getItem('accessToken')}`
@@ -19,7 +19,7 @@ const MakeAdmin = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure! delete this items?');
         if (proceed) {
-            const url = `http://localhost:5000/user/${id}`;
+            const url = `https://frozen-castle-64433.herokuapp.com//${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

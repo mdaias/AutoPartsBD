@@ -6,7 +6,7 @@ const AdminRole = ({ user, refetch, index, handleDelete }) => {
     const { email, role } = user;
     
     const makeAdmin = () => {
-        fetch(`http://localhost:5000/user/admin/${email}`, {
+        fetch(`https://frozen-castle-64433.herokuapp.com/user/admin/${email}`, {
             method: 'PUT',
             headers: {
                 authorization: `Bearer ${localStorage.getItem('accessToken')}`

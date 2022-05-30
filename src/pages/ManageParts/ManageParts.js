@@ -4,7 +4,7 @@ const ManageParts = () => {
     const [parts, setParts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/parts')
+        fetch('https://frozen-castle-64433.herokuapp.com/parts')
             .then(res => res.json())
             .then(data => {
                 setParts(data)
@@ -16,7 +16,7 @@ const ManageParts = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure! delete this items?');
         if (proceed) {
-            const url = `http://localhost:5000/parts/${id}`;
+            const url = `https://frozen-castle-64433.herokuapp.com/parts/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
