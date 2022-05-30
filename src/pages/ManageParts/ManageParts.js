@@ -39,7 +39,7 @@ const ManageParts = () => {
                             <th>Product Id</th>
                             <th>Product Name</th>
                             <th>Quantity</th>
-                            <th>Total Price</th>
+                            <th>Price</th>
                             <th></th>
                         </tr>
                     </thead>
