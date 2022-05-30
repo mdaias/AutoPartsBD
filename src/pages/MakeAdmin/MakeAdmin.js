@@ -13,6 +13,23 @@ const MakeAdmin = () => {
     if (isLoading) {
         return <Loading></Loading>
     }
+
+
+    // Delete user
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure! delete this items?');
+        if (proceed) {
+            const url = `http://localhost:5000/user/${id}`;
+            fetch(url, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+        }
+    }
+
     return (
         <div>
             <h2 className="text-2xl text-orange-400 my-5">All Users: {users.length}</h2>
@@ -33,6 +50,7 @@ const MakeAdmin = () => {
                                 key={user._id}
                                 user={user}
                                 refetch={refetch}
+                                handleDelete={handleDelete}
                             ></AdminRole>)
                         }
                     </tbody>

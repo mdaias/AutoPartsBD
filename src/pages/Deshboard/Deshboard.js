@@ -20,7 +20,7 @@ const Deshboard = () => {
                 <label htmlFor="deshboard-sidebar" className="drawer-overlay"></label>
                 <ul className="menu p-4 overflow-y-auto w-36 bg-base-100 text-base-content">
                     {/* All user can see this option */}
-                    
+                    <li><Link to='/deshboard'>Profile</Link></li>
 
                     {/* Only User can see this options */}
                     {!admin && <li><Link to='/deshboard/myorders'>My Orders</Link></li>}

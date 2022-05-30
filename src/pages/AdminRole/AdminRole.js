@@ -1,7 +1,7 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-const AdminRole = ({ user, refetch, index }) => {
+const AdminRole = ({ user, refetch, index, handleDelete }) => {
 
     const { email, role } = user;
     
@@ -31,7 +31,7 @@ const AdminRole = ({ user, refetch, index }) => {
             <th><th>{index + 1}</th></th>
             <td>{email}</td>
             <td>{role !== 'admin' && <button onClick={makeAdmin} class="btn btn-xs bg-amber-600">Make Admin</button>}</td>
-            <td><button class="btn btn-xs bg-sky-600">Remove User</button></td>
+            <td><button onClick={()=>handleDelete(user._id)} class="btn btn-xs bg-sky-600">Remove User</button></td>
         </tr>
     );
 
