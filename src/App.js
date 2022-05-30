@@ -19,6 +19,7 @@ import ManageOrdars from './pages/ManageOrdars/ManageOrdars';
 import AddProduct from './pages/AddProduct/AddProduct';
 import MyPortfolio from './pages/MyPortfolio/MyPortfolio';
 import Blogs from './pages/Blogs/Blogs';
+import NotFound from './pages/Shared/NotFound/NotFound';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
 
         <Route path='/login' element={<LogIn></LogIn>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
+        <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       <ToastContainer />
     </div>
